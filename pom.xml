@@ -14,6 +14,7 @@
     <pcap4j.version>1.8.2</pcap4j.version>
     <jna.version>5.14.0</jna.version>
     <slf4j.version>1.7.36</slf4j.version>
+    <junit.version>5.10.2</junit.version>
   </properties>
 
   <dependencies>
@@ -42,10 +43,17 @@
       <artifactId>slf4j-simple</artifactId>
       <version>${slf4j.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
     <resources>
       <resource>
         <directory>src</directory>
@@ -61,6 +69,9 @@
         <version>3.14.0</version>
         <configuration>
           <release>17</release>
+          <excludes>
+            <exclude>test/**</exclude>
+          </excludes>
         </configuration>
       </plugin>
       <plugin>
@@ -69,6 +80,14 @@
         <version>3.5.0</version>
         <configuration>
           <mainClass>app.NetPackSniff</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <useModulePath>false</useModulePath>
         </configuration>
       </plugin>
     </plugins>
