@@ -35,7 +35,8 @@ public class CaptureDialog extends JDialog implements ActionListener {
 
         devices = JpcapCaptor.getDeviceList();
         if (devices == null) {
-            JOptionPane.showMessageDialog(parent, "No device found.");
+            String error = JpcapCaptor.getLastDeviceListError();
+            JOptionPane.showMessageDialog(parent, error != null ? error : "No device found.");
             dispose();
             return;
         } else {
@@ -158,7 +159,7 @@ public class CaptureDialog extends JDialog implements ActionListener {
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Please input valid integer in capture length.");
             } catch (java.io.IOException e) {
-                JOptionPane.showMessageDialog(null, e.toString());
+                JOptionPane.showMessageDialog(null, e.getMessage());
                 jpcap = null;
             } finally {
                 dispose();

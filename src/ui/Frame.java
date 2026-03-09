@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.net.URL;
 
 public class Frame extends JFrame implements ActionListener {
     public Captor captor;
@@ -21,10 +22,7 @@ public class Frame extends JFrame implements ActionListener {
     JButton openButton, saveButton, captureButton, stopButton;
     javax.swing.Timer JDFrameUpdater = new javax.swing.Timer(500, new ActionListener() {
         public void actionPerformed(ActionEvent evt) {
-            tablePane.fireTableChanged();
-            statusLabel.setText("Captured " + captor.getPackets().size() + " packets.");
-
-            repaint();
+            refreshFrame();
         }
     });
     ButtonGroup lafGroup = new ButtonGroup();
@@ -161,6 +159,7 @@ public class Frame extends JFrame implements ActionListener {
         });
 
         loadProperty();
+        refreshFrame();
         //pack();
     }
 
@@ -214,6 +213,7 @@ public class Frame extends JFrame implements ActionListener {
 
     public void clear() {
         tablePane.clear();
+        refreshFrame();
     }
 
     public void startUpdating() {
@@ -223,8 +223,7 @@ public class Frame extends JFrame implements ActionListener {
 
     public void stopUpdating() {
         JDFrameUpdater.stop();
-        JDFrameUpdater.setRepeats(false);
-        JDFrameUpdater.start();
+        refreshFrame();
     }
 
     void loadProperty() {
@@ -269,8 +268,15 @@ public class Frame extends JFrame implements ActionListener {
         stopButton.setEnabled(true);
     }
 
+    private void refreshFrame() {
+        tablePane.refreshPackets();
+        statusLabel.setText(captor.getStatusText(tablePane.getVisiblePacketCount()));
+        repaint();
+    }
+
     private ImageIcon getImageIcon(String path) {
-        return new ImageIcon(this.getClass().getResource(path));
+        URL location = this.getClass().getResource(path);
+        return location != null ? new ImageIcon(location) : null;
     }
 
     private JRadioButtonMenuItem createLaFMenuItem(String name, String lafName) {
