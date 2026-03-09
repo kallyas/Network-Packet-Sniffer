@@ -39,5 +39,7 @@ jobs:
         if: matrix.java-version == 17
         uses: actions/upload-artifact@v4
         with:
-          name: network-packet-sniffer-jar
-          path: target/*.jar
+          name: network-packet-sniffer-dist
+          path: |
+            target/*-jar-with-dependencies.jar
+            target/*.jar

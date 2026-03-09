@@ -10,7 +10,7 @@ This project originally depended on the obsolete Jpcap runtime. It has now been 
 
 - Capture backend: `org.pcap4j:pcap4j-core:1.8.2`
 - Build system: Maven
-- Legacy app-facing API preserved through a compatibility layer in `src/jpcap/`
+- Legacy app-facing API preserved through a compatibility layer in `src/main/java/jpcap/`
 
 ## Features
 
@@ -57,19 +57,33 @@ export PKG_CONFIG_PATH="/opt/homebrew/opt/libpcap/lib/pkgconfig"
 mvn compile
 ```
 
+Build a distributable fat jar:
+
+```bash
+mvn package -DskipTests
+```
+
 ## Run
 
 ```bash
 mvn exec:java
 ```
 
+Run the packaged fat jar:
+
+```bash
+java -jar target/network-packet-sniffer-1.0-SNAPSHOT-jar-with-dependencies.jar
+```
+
 ## Project structure
 
-- `src/app/` application startup, capture flow, loader classes
-- `src/analyzer/` protocol analyzers
-- `src/stat/` statistics calculators
-- `src/ui/` Swing UI
-- `src/jpcap/` compatibility layer backed by Pcap4J
+- `src/main/java/app/` application startup, capture flow, loader classes
+- `src/main/java/analyzer/` protocol analyzers
+- `src/main/java/stat/` statistics calculators
+- `src/main/java/ui/` Swing UI
+- `src/main/java/jpcap/` compatibility layer backed by Pcap4J
+- `src/main/resources/image/` application icons
+- `src/test/java/` automated tests
 
 ## Notes
 
