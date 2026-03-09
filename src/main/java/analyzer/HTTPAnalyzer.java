@@ -1,8 +1,8 @@
 
 package analyzer;
 import jpcap.packet.*;
-import java.util.*;
 import java.io.*;
+import java.util.Vector;
 
 public class HTTPAnalyzer extends PacketAnalyzerAbstract
 {
@@ -11,7 +11,7 @@ public class HTTPAnalyzer extends PacketAnalyzerAbstract
 		"Header"
 	};
 	String method;
-	Vector headers=new Vector();
+	Vector<String> headers=new Vector<String>();
 	
 	public HTTPAnalyzer(){
 		layer=APPLICATION_LAYER;

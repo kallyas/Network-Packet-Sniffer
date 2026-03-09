@@ -25,16 +25,16 @@ public class PacketStat extends StatisticsTaker
 		return "Overall information";
 	}
 	
-	public void analyze(Vector packets){
+	public void analyze(List<Packet> packets){
 		if(packets.size()>0){
-			Packet fp=(Packet)packets.firstElement(),lp=(Packet)packets.lastElement();
+			Packet fp=packets.get(0),lp=packets.get(packets.size()-1);
 			first=new Date(fp.sec*1000+fp.usec/1000);
 			last=new Date(lp.sec*1000+lp.usec/1000);
 		}
 		
 		for(int i=0;i<packets.size();i++){
 			numOfPs++;
-			sizeOfPs+=((Packet)packets.elementAt(i)).len;
+			sizeOfPs+=packets.get(i).len;
 		}
 	}
 	

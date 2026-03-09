@@ -7,29 +7,26 @@ import stat.PacketStat;
 import stat.StatisticsTaker;
 import stat.TransportProtocolStat;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class StatisticsTakerLoader {
-   static Vector stakers = new Vector();
+   static List<StatisticsTaker> stakers = new ArrayList<StatisticsTaker>();
 
     static void loadStatisticsTaker(){
-        stakers.addElement(new PacketStat());
-        stakers.addElement(new NetworkProtocolStat());
-        stakers.addElement(new TransportProtocolStat());
-        stakers.addElement(new ApplicationProtocolStat());
-        stakers.addElement(new FreeMemStat());
+        stakers.clear();
+        stakers.add(new PacketStat());
+        stakers.add(new NetworkProtocolStat());
+        stakers.add(new TransportProtocolStat());
+        stakers.add(new ApplicationProtocolStat());
+        stakers.add(new FreeMemStat());
     }
 
     public static StatisticsTaker[] getStatisticsTakers(){
-        StatisticsTaker[] array = new StatisticsTaker[stakers.size()];
-
-        for(int i=0;i <array.length; i++)
-            array[i]=(StatisticsTaker)stakers.elementAt(i);
-
-        return array;
+        return stakers.toArray(new StatisticsTaker[0]);
     }
 
     public static StatisticsTaker getStatisticsTakerAt(int index){
-        return (StatisticsTaker)stakers.get(index);
+        return stakers.get(index);
     }
 }

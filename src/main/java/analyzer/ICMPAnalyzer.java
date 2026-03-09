@@ -1,6 +1,7 @@
 package analyzer;
 import jpcap.packet.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ICMPAnalyzer extends PacketAnalyzerAbstract
 {
@@ -38,7 +39,7 @@ public class ICMPAnalyzer extends PacketAnalyzerAbstract
 		"Address Mask Reply(18)"
 	};
 	
-	private Hashtable values=new Hashtable();
+	private final Map<String, Object> values = new HashMap<String, Object>();
 	
 	public ICMPAnalyzer(){
 		layer=TRANSPORT_LAYER;

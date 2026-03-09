@@ -16,7 +16,7 @@ import javax.swing.table.*;
 import stat.StatisticsTaker;
 import ui.graph.PieGraph;
 
-import java.util.Vector;
+import java.util.List;
 
 
 public class CumlativeStatFrame extends StatFrame implements ListSelectionListener {
@@ -27,7 +27,7 @@ public class CumlativeStatFrame extends StatFrame implements ListSelectionListen
     StatisticsTaker staker;
     int statType = 0;
 
-    CumlativeStatFrame(Vector packets, StatisticsTaker staker) {
+    CumlativeStatFrame(List<Packet> packets, StatisticsTaker staker) {
         super(staker.getName());
         this.staker = staker;
         staker.analyze(packets);
@@ -63,7 +63,7 @@ public class CumlativeStatFrame extends StatFrame implements ListSelectionListen
 
     }
 
-    public static CumlativeStatFrame openWindow(Vector packets, StatisticsTaker staker) {
+    public static CumlativeStatFrame openWindow(List<Packet> packets, StatisticsTaker staker) {
         CumlativeStatFrame frame = new CumlativeStatFrame(packets, staker);
         frame.setVisible(true);
         return frame;

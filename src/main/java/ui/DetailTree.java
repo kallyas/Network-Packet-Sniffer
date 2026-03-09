@@ -51,8 +51,8 @@ class DetailTree extends JComponent {
                 Object[] values = analyzers[i].getValues();
 
                 for (int j = 0; j < names.length; j++) {
-                    if (values[j] instanceof Vector) {
-                        addNodes(node, names[j], (Vector) values[j]);
+                    if (values[j] instanceof Vector<?>) {
+                        addNodes(node, names[j], (Vector<?>) values[j]);
                     } else if (values[j] != null) {
                         addNode(node, names[j] + ": " + values[j]);
                     } else {
@@ -71,7 +71,7 @@ class DetailTree extends JComponent {
         node.add(new DefaultMutableTreeNode(str));
     }
 
-    private void addNodes(DefaultMutableTreeNode node, String str, Vector v) {
+    private void addNodes(DefaultMutableTreeNode node, String str, Vector<?> v) {
         DefaultMutableTreeNode subnode = new DefaultMutableTreeNode(str);
 
         for (int i = 0; i < v.size(); i++)

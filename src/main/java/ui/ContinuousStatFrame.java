@@ -8,8 +8,7 @@
 package ui;
 
 import java.awt.BorderLayout;
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.List;
 
 import jpcap.packet.Packet;
 import stat.StatisticsTaker;
@@ -30,7 +29,7 @@ public class ContinuousStatFrame extends StatFrame {
     int count, currentCount = 0;
     long currentSec = 0;
 
-    ContinuousStatFrame(Vector packets, int count, boolean isTime, StatisticsTaker staker, int type) {
+    ContinuousStatFrame(List<Packet> packets, int count, boolean isTime, StatisticsTaker staker, int type) {
         super(staker.getName() + " [" + staker.getStatTypes()[type] + "]");
         this.staker = staker;
         this.drawTimescale = isTime;
@@ -45,17 +44,16 @@ public class ContinuousStatFrame extends StatFrame {
 
         if (packets == null || packets.size() == 0) return;
 
-        Enumeration en = packets.elements();
-        currentSec = ((Packet) packets.firstElement()).sec;
+        currentSec = packets.get(0).sec;
         currentCount = 0;
         int index = 0;
         if (isTime) {
             while (index < packets.size()) {
-                Packet p = (Packet) packets.elementAt(index++);
+                Packet p = packets.get(index++);
 
                 while (index < packets.size() && p.sec - currentSec <= count) {
                     staker.addPacket(p);
-                    p = (Packet) packets.elementAt(index++);
+                    p = packets.get(index++);
                 }
                 if (index == packets.size()) break;
                 currentSec += count;
@@ -64,10 +62,10 @@ public class ContinuousStatFrame extends StatFrame {
                 staker.clear();
             }
         } else {
-            while (en.hasMoreElements()) {
-                for (int i = 0; en.hasMoreElements() && i < count; i++, currentCount++)
-                    staker.addPacket((Packet) en.nextElement());
-                if (!en.hasMoreElements()) break;
+            while (index < packets.size()) {
+                for (int i = 0; index < packets.size() && i < count; i++, currentCount++, index++)
+                    staker.addPacket(packets.get(index));
+                if (index >= packets.size()) break;
                 currentCount = 0;
                 lineGraph.addValue(staker.getValues(type));
                 staker.clear();
@@ -75,7 +73,7 @@ public class ContinuousStatFrame extends StatFrame {
         }
     }
 
-    public static ContinuousStatFrame openWindow(Vector packets, StatisticsTaker staker) {
+    public static ContinuousStatFrame openWindow(List<Packet> packets, StatisticsTaker staker) {
         ContinuousStatFrame frame = new ContinuousStatFrame(packets, 5, true, staker, 0);
         frame.setVisible(true);
         return frame;

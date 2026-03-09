@@ -1,6 +1,7 @@
 package analyzer;
 import jpcap.packet.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TCPAnalyzer extends PacketAnalyzerAbstract
 {
@@ -16,7 +17,7 @@ public class TCPAnalyzer extends PacketAnalyzerAbstract
 		"SYN Flag",
 		"FIN Flag",
 		"Window Size"};
-	Hashtable values=new Hashtable();
+	private final Map<String, Object> values = new HashMap<String, Object>();
 	
 	public TCPAnalyzer(){
 		layer=TRANSPORT_LAYER;

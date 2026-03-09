@@ -3,14 +3,16 @@
  * 
  */
 package stat;
-import java.util.Vector;
+
 import jpcap.packet.Packet;
+
+import java.util.List;
 
 public abstract class StatisticsTaker
 {
 	public abstract String getName();//Gets the name of the 
 
-	public abstract void analyze(Vector packets);
+	public abstract void analyze(List<Packet> packets);
 	public abstract void addPacket(Packet p);
 	
 	public abstract String[] getLabels();
@@ -21,7 +23,7 @@ public abstract class StatisticsTaker
 	
 	public StatisticsTaker newInstance(){
 		try{
-			return (StatisticsTaker)this.getClass().newInstance();
+			return this.getClass().getDeclaredConstructor().newInstance();
 		}catch(Exception e){
 			return null;
 		}

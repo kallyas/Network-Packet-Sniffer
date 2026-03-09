@@ -10,7 +10,7 @@ public class LineGraph extends JPanel {
     boolean autoMax, autoMin;
     int marginY = 20, marginX = 20;
     private String[] labels;
-    private Vector values = new Vector();
+    private Vector<long[]> values = new Vector<long[]>();
     private Color[] colors = {
             Color.blue, Color.green, Color.yellow.darker(), Color.red, Color.cyan, Color.pink, Color.orange
     };
@@ -135,9 +135,9 @@ public class LineGraph extends JPanel {
                 g.drawString(String.valueOf((double) (maxValue - (maxValue - minValue) * i / 4.0)), marginX - 5, y);
             }
 
-            long[] vv = (long[]) values.firstElement();
+            long[] vv = values.firstElement();
             for (int i = 1; i < values.size(); i++, x += d) {
-                long[] v = (long[]) values.elementAt(i);
+                long[] v = values.elementAt(i);
 
                 for (int j = 0; j < v.length; j++) {
                     Color c = colors[j % colors.length];

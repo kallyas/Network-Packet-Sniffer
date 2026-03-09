@@ -16,46 +16,41 @@ import analyzer.TCPAnalyzer;
 import analyzer.TelnetAnalyzer;
 import analyzer.UDPAnalyzer;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PacketAnalyzerLoader {
-    static Vector analyzers = new Vector();
+    static List<PacketAnalyzerAbstract> analyzers = new ArrayList<PacketAnalyzerAbstract>();
 
     static void loadDefaultAnalyzer() {
-        analyzers.addElement(new PacketAnalyzer());
-        analyzers.addElement(new EthernetAnalyzer());
-        analyzers.addElement(new IPv4Analyzer());
-        analyzers.addElement(new IPv6Analyzer());
-        analyzers.addElement(new TCPAnalyzer());
-        analyzers.addElement(new UDPAnalyzer());
-        analyzers.addElement(new ICMPAnalyzer());
-        analyzers.addElement(new HTTPAnalyzer());
-        analyzers.addElement(new FTPAnalyzer());
-        analyzers.addElement(new TelnetAnalyzer());
-        analyzers.addElement(new SSHAnalyzer());
-        analyzers.addElement(new SMTPAnalyzer());
-        analyzers.addElement(new POP3Analyzer());
-        analyzers.addElement(new ARPAnalyzer());
+        analyzers.clear();
+        analyzers.add(new PacketAnalyzer());
+        analyzers.add(new EthernetAnalyzer());
+        analyzers.add(new IPv4Analyzer());
+        analyzers.add(new IPv6Analyzer());
+        analyzers.add(new TCPAnalyzer());
+        analyzers.add(new UDPAnalyzer());
+        analyzers.add(new ICMPAnalyzer());
+        analyzers.add(new HTTPAnalyzer());
+        analyzers.add(new FTPAnalyzer());
+        analyzers.add(new TelnetAnalyzer());
+        analyzers.add(new SSHAnalyzer());
+        analyzers.add(new SMTPAnalyzer());
+        analyzers.add(new POP3Analyzer());
+        analyzers.add(new ARPAnalyzer());
     }
 
     public static PacketAnalyzerAbstract[] getAnalyzers() {
-        PacketAnalyzerAbstract[] array = new PacketAnalyzerAbstract[analyzers.size()];
-        for (int i = 0; i < array.length; i++) {
-            array[i] = (PacketAnalyzerAbstract) analyzers.elementAt(i);
-        }
-        return array;
+        return analyzers.toArray(new PacketAnalyzerAbstract[0]);
     }
 
     public static PacketAnalyzerAbstract[] getAnalyzersOf(int layer){
-        Vector v = new Vector();
+        List<PacketAnalyzerAbstract> v = new ArrayList<PacketAnalyzerAbstract>();
 
         for(int i=0;i<analyzers.size();i++)
-            if(((PacketAnalyzerAbstract)analyzers.elementAt(i)).layer==layer)
-                v.addElement(analyzers.elementAt(i));
+            if(analyzers.get(i).layer==layer)
+                v.add(analyzers.get(i));
 
-        PacketAnalyzerAbstract[] res=new PacketAnalyzerAbstract[v.size()];
-        for(int i=0;i<res.length;i++)
-            res[i]=(PacketAnalyzerAbstract)v.elementAt(i);
-        return res;
+        return v.toArray(new PacketAnalyzerAbstract[0]);
     }
 }

@@ -1,6 +1,6 @@
 package stat;
 import jpcap.packet.*;
-import java.util.*;
+import java.util.List;
 
 import analyzer.PacketAnalyzerAbstract;
 import app.PacketAnalyzerLoader;
@@ -31,9 +31,9 @@ public class NetworkProtocolStat extends StatisticsTaker
 		return "Netowrk Layer Protocol Ratio";
 	}
 	
-	public void analyze(Vector packets){
+	public void analyze(List<Packet> packets){
 		for(int i=0;i<packets.size();i++){
-			Packet p=(Packet)packets.elementAt(i);
+			Packet p=packets.get(i);
 			totalPs++;
 			totalSize+=p.len;
 			
@@ -41,7 +41,6 @@ public class NetworkProtocolStat extends StatisticsTaker
 			for(int j=0;j<analyzers.length;j++)
 				if(analyzers[j].isAnalyzable(p)){
 					numOfPs[j]++;
-					totalPs++;
 					sizeOfPs[j]+=p.len;
 					flag=true;
 					break;

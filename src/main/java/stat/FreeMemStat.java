@@ -3,7 +3,9 @@
  */
 
 package stat;
-import java.util.*;
+import java.util.List;
+
+import jpcap.packet.Packet;
 
 public class FreeMemStat extends StatisticsTaker
 {
@@ -14,8 +16,8 @@ public class FreeMemStat extends StatisticsTaker
 		return "Free Memory";
 	}
 
-	public void analyze(Vector packets){}
-	public void addPacket(jpcap.packet.Packet p){}
+	public void analyze(List<Packet> packets){}
+	public void addPacket(Packet p){}
 
 	public String[] getLabels(){
 		return labels;

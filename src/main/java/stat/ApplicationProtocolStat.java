@@ -1,6 +1,6 @@
 package stat;
 import jpcap.packet.*;
-import java.util.*;
+import java.util.List;
 
 import analyzer.PacketAnalyzerAbstract;
 import app.PacketAnalyzerLoader;
@@ -30,9 +30,9 @@ public class ApplicationProtocolStat extends StatisticsTaker
 		return "Application Layer Protocol Ratio";
 	}
 	
-	public void analyze(Vector packets){
+	public void analyze(List<Packet> packets){
 		for(int i=0;i<packets.size();i++){
-			Packet p=(Packet)packets.elementAt(i);
+			Packet p=packets.get(i);
 			totalPs++;
 			
 			boolean flag=false;

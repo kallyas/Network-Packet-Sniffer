@@ -9,7 +9,7 @@ import javax.swing.tree.*;
 import analyzer.PacketAnalyzerAbstract;
 import app.PacketAnalyzerLoader;
 
-import java.util.*;
+import java.util.Vector;
 
 
 class TableTree extends JComponent {
@@ -44,8 +44,8 @@ class TableTree extends JComponent {
                 if (names == null) continue;
 
                 for (int j = 0; j < names.length; j++) {
-                    if (values[j] instanceof Vector) {
-                        addNodes(node, names[j], (Vector) values[j]);
+                    if (values[j] instanceof Vector<?>) {
+                        addNodes(node, names[j], (Vector<?>) values[j]);
                     } else if (values[j] != null) {
                         addNode(node, names[j] + ": " + values[j]);
                     }/*else{
@@ -64,7 +64,7 @@ class TableTree extends JComponent {
         node.add(new DefaultMutableTreeNode(str));
     }
 
-    private void addNodes(DefaultMutableTreeNode node, String str, Vector v) {
+    private void addNodes(DefaultMutableTreeNode node, String str, Vector<?> v) {
         DefaultMutableTreeNode subnode = new DefaultMutableTreeNode(str);
 
         for (int i = 0; i < v.size(); i++)

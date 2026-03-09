@@ -3,7 +3,8 @@ package analyzer;
 import jpcap.packet.*;
 
 import java.net.InetAddress;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class IPv4Analyzer extends PacketAnalyzerAbstract
 {
@@ -23,7 +24,7 @@ public class IPv4Analyzer extends PacketAnalyzerAbstract
 		//"Source Host Name",
 		//"Destination Host Name"
 		};
-	private Hashtable values=new Hashtable();
+	private final Map<String, Object> values = new HashMap<String, Object>();
 	
 	public IPv4Analyzer(){
 		layer=NETWORK_LAYER;

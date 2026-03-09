@@ -1,7 +1,8 @@
 
 package analyzer;
 import jpcap.packet.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class IPv6Analyzer extends PacketAnalyzerAbstract
 {
@@ -18,7 +19,7 @@ public class IPv6Analyzer extends PacketAnalyzerAbstract
 		//"Destination Host Name"
 		};
 	
-	Hashtable values=new Hashtable();
+	private final Map<String, Object> values = new HashMap<String, Object>();
 	
 	public IPv6Analyzer(){
 		layer=NETWORK_LAYER;
