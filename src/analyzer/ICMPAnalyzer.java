@@ -66,11 +66,11 @@ public class ICMPAnalyzer extends PacketAnalyzerAbstract
 		}else{
 			values.put(valueNames[0],typeNames[icmp.type]);
 		}
-		values.put(valueNames[1],new Integer(icmp.code));
+		values.put(valueNames[1],Integer.valueOf(icmp.code));
 		
 		if(icmp.type==0 || icmp.type==8 || (icmp.type>=13 && icmp.type<=18)){
-			values.put(valueNames[2],new Integer(icmp.id));
-			values.put(valueNames[3],new Integer(icmp.seq));
+			values.put(valueNames[2],Integer.valueOf(icmp.id));
+			values.put(valueNames[3],Integer.valueOf(icmp.seq));
 		}
 		
 		if(icmp.type==5)
@@ -83,9 +83,9 @@ public class ICMPAnalyzer extends PacketAnalyzerAbstract
 			                         (icmp.subnetmask&0xff)+".");
 		
 		if(icmp.type==13 || icmp.type==14){
-			values.put(valueNames[6],new Long(icmp.orig_timestamp));
-			values.put(valueNames[7],new Long(icmp.recv_timestamp));
-			values.put(valueNames[8],new Long(icmp.trans_timestamp));
+			values.put(valueNames[6],Long.valueOf(icmp.orig_timestamp));
+			values.put(valueNames[7],Long.valueOf(icmp.recv_timestamp));
+			values.put(valueNames[8],Long.valueOf(icmp.trans_timestamp));
 		}
 	}
 	

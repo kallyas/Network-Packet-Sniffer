@@ -27,14 +27,14 @@ public class PacketAnalyzer extends PacketAnalyzerAbstract
 		if(name.equals(valueNames[0]))
 			return new java.util.Date(packet.sec*1000+packet.usec/1000).toString();
 		else if(name.equals(valueNames[1]))
-			return new Integer(packet.caplen);
+			return Integer.valueOf(packet.caplen);
 		else return null;
 	}
 	
 	Object getValueAt(int index){
 		switch(index){
 			case 0: return new java.util.Date(packet.sec*1000+packet.usec/1000).toString();
-			case 1: return new Integer(packet.caplen);
+			case 1: return Integer.valueOf(packet.caplen);
 			default: return null;
 		}
 	}
@@ -42,7 +42,7 @@ public class PacketAnalyzer extends PacketAnalyzerAbstract
 	public Object[] getValues(){
 		Object[] v=new Object[2];
 		v[0]=new java.util.Date(packet.sec*1000+packet.usec/1000).toString();
-		v[1]=new Integer(packet.caplen);
+		v[1]=Integer.valueOf(packet.caplen);
 		
 		return v;
 	}

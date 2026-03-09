@@ -111,7 +111,7 @@ public class CumlativeStatFrame extends StatFrame implements ListSelectionListen
                 values[i][0] = types[i];
                 long[] v = staker.getValues(i);
                 for (int j = 0; j < v.length; j++)
-                    values[i][j + 1] = new Long(v[j]);
+                    values[i][j + 1] = Long.valueOf(v[j]);
             }
         }
 
@@ -138,7 +138,7 @@ public class CumlativeStatFrame extends StatFrame implements ListSelectionListen
                 values[i][0] = types[i];
                 long[] v = staker.getValues(i);
                 for (int j = 0; j < v.length; j++)
-                    values[i][j + 1] = new Long(v[j]);
+                    values[i][j + 1] = Long.valueOf(v[j]);
             }
             fireTableDataChanged();
         }

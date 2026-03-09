@@ -41,9 +41,9 @@ public class UDPAnalyzer extends PacketAnalyzerAbstract
 	
 	public Object getValueAt(int index){
 		switch(index){
-			case 0: return new Integer(udp.src_port);
-			case 1: return new Integer(udp.dst_port);
-			case 2: return new Integer(udp.length);
+			case 0: return Integer.valueOf(udp.src_port);
+			case 1: return Integer.valueOf(udp.dst_port);
+			case 2: return Integer.valueOf(udp.length);
 			default: return null;
 		}
 	}

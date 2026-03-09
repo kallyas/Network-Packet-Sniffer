@@ -38,17 +38,17 @@ public class TCPAnalyzer extends PacketAnalyzerAbstract
 		values.clear();
 		if(!isAnalyzable(p)) return;
 		TCPPacket tcp=(TCPPacket)p;
-		values.put(valueNames[0],new Integer(tcp.src_port));
-		values.put(valueNames[1],new Integer(tcp.dst_port));
-		values.put(valueNames[2],new Long(tcp.sequence));
-		values.put(valueNames[3],new Long(tcp.ack_num));
-		values.put(valueNames[4],new Boolean(tcp.urg));
-		values.put(valueNames[5],new Boolean(tcp.ack));
-		values.put(valueNames[6],new Boolean(tcp.psh));
-		values.put(valueNames[7],new Boolean(tcp.rst));
-		values.put(valueNames[8],new Boolean(tcp.syn));
-		values.put(valueNames[9],new Boolean(tcp.fin));
-		values.put(valueNames[10],new Integer(tcp.window));
+		values.put(valueNames[0],Integer.valueOf(tcp.src_port));
+		values.put(valueNames[1],Integer.valueOf(tcp.dst_port));
+		values.put(valueNames[2],Long.valueOf(tcp.sequence));
+		values.put(valueNames[3],Long.valueOf(tcp.ack_num));
+		values.put(valueNames[4],Boolean.valueOf(tcp.urg));
+		values.put(valueNames[5],Boolean.valueOf(tcp.ack));
+		values.put(valueNames[6],Boolean.valueOf(tcp.psh));
+		values.put(valueNames[7],Boolean.valueOf(tcp.rst));
+		values.put(valueNames[8],Boolean.valueOf(tcp.syn));
+		values.put(valueNames[9],Boolean.valueOf(tcp.fin));
+		values.put(valueNames[10],Integer.valueOf(tcp.window));
 	}
 	
 	public Object getValue(String valueName){

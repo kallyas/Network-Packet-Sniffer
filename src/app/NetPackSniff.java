@@ -64,8 +64,4 @@ public class NetPackSniff {
             System.exit(0);
         }
     }
-
-    protected void finalize() throws Throwable {
-        saveProperty();
-    }
 }

@@ -42,7 +42,7 @@ public class EthernetAnalyzer extends PacketAnalyzerAbstract
 
 	Object getValueAt(int index){
 		switch(index){
-		case 0: return new Integer(eth.frametype);
+		case 0: return Integer.valueOf(eth.frametype);
 		case 1: return eth.getSourceAddress();
 		case 2: return eth.getDestinationAddress();
 		default: return null;

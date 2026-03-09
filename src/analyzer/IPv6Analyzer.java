@@ -41,12 +41,12 @@ public class IPv6Analyzer extends PacketAnalyzerAbstract
 		values.clear();
 		if(!isAnalyzable(packet))	return;
 		IPPacket ip=(IPPacket)packet;
-		values.put(valueNames[0],new Integer(6));
-		values.put(valueNames[1],new Integer(ip.priority));
-		values.put(valueNames[2],new Integer(ip.flow_label));
-		values.put(valueNames[3],new Integer(ip.length));
-		values.put(valueNames[4],new Integer(ip.protocol));
-		values.put(valueNames[5],new Integer(ip.hop_limit));
+		values.put(valueNames[0],Integer.valueOf(6));
+		values.put(valueNames[1],Integer.valueOf(ip.priority));
+		values.put(valueNames[2],Integer.valueOf(ip.flow_label));
+		values.put(valueNames[3],Integer.valueOf(ip.length));
+		values.put(valueNames[4],Integer.valueOf(ip.protocol));
+		values.put(valueNames[5],Integer.valueOf(ip.hop_limit));
 		values.put(valueNames[6],ip.src_ip.getHostAddress());
 		values.put(valueNames[7],ip.dst_ip.getHostAddress());
 		//values.put(valueNames[8],ip.src_ip.getHostName());
