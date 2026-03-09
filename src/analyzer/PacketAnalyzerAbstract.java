@@ -1,7 +1,7 @@
 
 package analyzer;
 
-import net.sourceforge.jpcap.net.Packet;
+import jpcap.packet.Packet;
 
 public abstract class PacketAnalyzerAbstract
 {

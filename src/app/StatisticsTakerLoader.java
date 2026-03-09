@@ -1,5 +1,12 @@
 package app;
 
+import stat.ApplicationProtocolStat;
+import stat.FreeMemStat;
+import stat.NetworkProtocolStat;
+import stat.PacketStat;
+import stat.StatisticsTaker;
+import stat.TransportProtocolStat;
+
 import java.util.Vector;
 
 public class StatisticsTakerLoader {

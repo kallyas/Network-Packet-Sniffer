@@ -1,7 +1,7 @@
 package analyzer;
 
-import net.sourceforge.jpcap.net.ARPPacket;
-import net.sourceforge.jpcap.net.Packet;
+import jpcap.packet.ARPPacket;
+import jpcap.packet.Packet;
 
 public class ARPAnalyzer extends PacketAnalyzerAbstract
 {
@@ -54,15 +54,15 @@ public class ARPAnalyzer extends PacketAnalyzerAbstract
 				case ARPPacket.HARDTYPE_ETHER: return "Ethernet ("+arp.hardtype+")";
 				case ARPPacket.HARDTYPE_IEEE802: return "Token ring ("+arp.hardtype+")";
 				case ARPPacket.HARDTYPE_FRAMERELAY: return "Frame relay ("+arp.hardtype+")";
-				default: return new Integer(arp.hardtype);
+				default: return Integer.valueOf(arp.hardtype);
 			}
 			case 1:
 			switch(arp.prototype){
 				case ARPPacket.PROTOTYPE_IP: return "IP ("+arp.prototype+")";
-				default: return new Integer(arp.prototype);
+				default: return Integer.valueOf(arp.prototype);
 			}
-			case 2: return new Integer(arp.hlen);
-			case 3: return new Integer(arp.plen);
+			case 2: return Integer.valueOf(arp.hlen);
+			case 3: return Integer.valueOf(arp.plen);
 			case 4:
 			switch(arp.operation){
 				case ARPPacket.ARP_REQUEST: return "ARP Request";
@@ -71,7 +71,7 @@ public class ARPAnalyzer extends PacketAnalyzerAbstract
 				case ARPPacket.RARP_REPLY: return "Reverse ARP Reply";
 				case ARPPacket.INV_REQUEST: return "Identify peer Request";
 				case ARPPacket.INV_REPLY: return "Identify peer Reply";
-				default: return new Integer(arp.operation);
+				default: return Integer.valueOf(arp.operation);
 			}
 			case 5: return arp.getSenderHardwareAddress();
 			case 6: return arp.getSenderProtocolAddress();

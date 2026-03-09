@@ -1,5 +1,21 @@
 package app;
 
+import analyzer.ARPAnalyzer;
+import analyzer.EthernetAnalyzer;
+import analyzer.FTPAnalyzer;
+import analyzer.HTTPAnalyzer;
+import analyzer.ICMPAnalyzer;
+import analyzer.IPv4Analyzer;
+import analyzer.IPv6Analyzer;
+import analyzer.POP3Analyzer;
+import analyzer.PacketAnalyzer;
+import analyzer.PacketAnalyzerAbstract;
+import analyzer.SMTPAnalyzer;
+import analyzer.SSHAnalyzer;
+import analyzer.TCPAnalyzer;
+import analyzer.TelnetAnalyzer;
+import analyzer.UDPAnalyzer;
+
 import java.util.Vector;
 
 public class PacketAnalyzerLoader {
@@ -22,10 +38,10 @@ public class PacketAnalyzerLoader {
         analyzers.addElement(new ARPAnalyzer());
     }
 
-    public static PacketAnayzerAbstract[] getAnalyzers() {
-        PacketAnayzerAbstract[] array = new PacketAnayzerAbstract[analyzers.size()];
+    public static PacketAnalyzerAbstract[] getAnalyzers() {
+        PacketAnalyzerAbstract[] array = new PacketAnalyzerAbstract[analyzers.size()];
         for (int i = 0; i < array.length; i++) {
-            array[i] = (PacketAnayzerAbstract) analyzers.elementAt(i);
+            array[i] = (PacketAnalyzerAbstract) analyzers.elementAt(i);
         }
         return array;
     }

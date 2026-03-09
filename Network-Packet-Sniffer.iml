@@ -7,18 +7,5 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../../../../../jpcap" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../../../../../jpcap" />
-        </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../../../../../jpcap" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../../../../../jpcap" recursive="false" type="SOURCES" />
-      </library>
-    </orderEntry>
   </component>
 </module>
