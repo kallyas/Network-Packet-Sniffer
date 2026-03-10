@@ -65,6 +65,9 @@ mvn package -DskipTests
 
 ## Run
 
+> Warning
+> Live packet capture requires elevated permissions. Run the app with `sudo` on macOS/Linux, or from an Administrator shell on Windows, if you want to capture traffic from a network interface.
+
 ```bash
 mvn exec:java
 ```
